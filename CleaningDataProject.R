@@ -1,10 +1,9 @@
 # Getting and Cleaning Data Course Project
-
+rm(list = ls())
 # The script processes Activity Recognition Using Smartphones Dataset
 # It has two outputs
 # data table X : Dataset as per Step 4 of the Instructions
 # data table X_tidy : Tidy Data set as requested in Step 5 of the instructions
-
 if(!file.exists('./data')) {dir.create('./data')}
 
 # Downloading the dataset
@@ -13,6 +12,7 @@ if (!file.exists('./data/Dataset.zip')) {
   download.file(fileUrl, './data/Dataset.zip', method = 'curl')
   unzip('./data/Dataset.zip', exdir = './data')
   }
+library(data.table)
 
 # Load the feature names
 Features <- fread('./data/UCI HAR Dataset/features.txt', header = F, sep2 = '\t')
@@ -56,3 +56,7 @@ X_tidy <- dcast(Xmelt, variable ~ Activity, mean)
 
 # Removing unnecessary variables from workspace
 rm('X_train','X_test','Features','Features_logicals', 'Activity_labels', 'Y_train','Y_test','id','fileUrl','Features_std_mean','Xmelt')
+
+write.table(X,"./data/UCI HAR Dataset/CleanData.txt",sep="\t",row.names=FALSE)
+write.table(X_tidy,"./data/UCI HAR Dataset/TidyData.txt",sep="\t",row.names=FALSE)
+

@@ -20,6 +20,10 @@ The dataset includes the following files:
 
 - 'test/y_test.txt': Test labels.
 
+Full description of the Dataset can be found on the following link:
+
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
 ## Data Cleaning Steps
 
 In this part, we explain the different transformation that the data has undergone during the cleaning process.
